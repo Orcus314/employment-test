@@ -23,7 +23,7 @@ async def get_all(session, urls): #allows for async data collection from all pag
 def parse(results):
     outlist = []
     for html in results:
-        if html != False:
+        if html != False: #Handler for if data no longer exists
             soup =BeautifulSoup(html[1], "html.parser")
             script = str([v for v in soup.find_all("script") if "imp_data" in v.text][0]) #finds player data
             scriptsp = script.split("\"platform\": null")[1]

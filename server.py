@@ -40,12 +40,12 @@ async def pullall(request):
     outlist=[]
     DSN = 'postgres://postgres:admin@pgdb:5432/fortstats'
     conn = await asyncpg.connect(DSN)
-    rows = await conn.fetch('SELECT FortID FROM fortistats')
+    rows = await conn.fetch('SELECT FortID FROM fortistats')#Pulls all ID's from the database
     for x in rows:
         outlist.append(x['fortid'])
     return web.json_response(outlist)
 
-async def update(request):
+async def update(request): #allows for the manual execution of the update command
     todo=[]
     DSN = 'postgres://postgres:admin@pgdb:5432/fortstats'
     conn = await asyncpg.connect(DSN)
@@ -61,10 +61,10 @@ async def update(request):
     return web.Response(text="Success")
 
 app = web.Application()
-app.add_routes([web.get('/push/{id}', push)])
+app.add_routes([web.get('/push/{id}', push)])# Define additional web commands here
 app.add_routes([web.get('/pull/{id}', pull)])
 app.add_routes([web.get('/pullall', pullall)])
 app.add_routes([web.get('/update', update)])
-p = subprocess.Popen([sys.executable, 'updater.py'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+p = subprocess.Popen([sys.executable, 'updater.py'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT) #starts a background process to handle updating the database
 
 web.run_app(app)

@@ -7,7 +7,7 @@ async def update():
     todo=[]
     DSN = 'postgres://postgres:admin@pgdb:5432/fortstats'
     conn = await asyncpg.connect(DSN)
-    rows = await conn.fetch('SELECT FortID FROM fortistats')
+    rows = await conn.fetch('SELECT FortID FROM fortistats') #pulls all current ID's in the database
     for x in rows:
         todo.append("https://fortnitetracker.com/profile/all/"+x['fortid'])
 
