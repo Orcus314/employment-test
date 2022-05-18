@@ -19,3 +19,10 @@ http://localhost:8080/push/{x} - Scrapes the data associated {x} (don't include 
 
 http://localhost:8080/update - Manually forces the system to use the update command, updating all records
 
+Note: The Database by default contains 2 of the user records I used for testing, these can be removed if requested
+
+Error Handling:
+The major errors that could occur in this system come from users entering non-existant entries and entries being deleted/privated after they are added to the database, as it stands the system will let the user know a push has failed and during the update if a user is no longer accessable the parser will simply skip past it and the data will not be updated. Another point that I would like to do more testing on is input sanitization, from my testing and understanding it shouldn't be possible for the user to send a DROP command to the database, but since that is a frequent flaw in sql systems I would want more testing
+
+Future Improvements
+The main improvement I would like to make would be to improve the performance of the parsing function, granted compared to the html waittimes it is fairly minor but I can see a few points that I believe could be improved once I gain a greated understanding of the beautifulsoup library, mainly the for loops.
