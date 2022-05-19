@@ -1,6 +1,7 @@
 # employment-test
 
 Hi Chris et al.
+
 Thanks for the project, was a really fun return to proper programming
 
 To initiate the system use the following command
